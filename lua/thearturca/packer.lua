@@ -14,7 +14,7 @@ return require('packer').startup(function(use)
   }
 
   -- ColorScheme
-  use({ 'rose-pine/neovim', as = 'rose-pine', config = function() vim.cmd('colorscheme rose-pine') end })
+  use({ 'rose-pine/neovim', as = 'rose-pine' })
 
   -- Syntax highlight
   use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate'})
@@ -52,7 +52,14 @@ return require('packer').startup(function(use)
   use "jay-babu/mason-nvim-dap.nvim"
 
   -- bottom line
-  use 'feline-nvim/feline.nvim'
+  use {
+            'nvim-lualine/lualine.nvim',
+            requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+      }
 
-  end)
+use {
+      'lewis6991/gitsigns.nvim',
+      -- tag = 'release' -- To use the latest release (do not use this if you run Neovim nightly or dev builds!)
+}
+end)
 
