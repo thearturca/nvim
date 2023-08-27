@@ -7,11 +7,18 @@ return require('packer').startup(function(use)
       -- Packer can manage itself
       use 'wbthomason/packer.nvim'
 
+      -- Harpoon
       use 'ThePrimeagen/harpoon'
       use {
             'nvim-telescope/telescope.nvim', tag = '0.1.1',
             requires = { {'nvim-lua/plenary.nvim'} }
       }
+
+      -- leap
+      use('ggandor/leap.nvim')
+
+      -- visualize colors
+      use('norcalli/nvim-colorizer.lua')
 
       -- ColorScheme
       use({ 'rose-pine/neovim', as = 'rose-pine' })
