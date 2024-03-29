@@ -9,8 +9,9 @@ return require('packer').startup(function(use)
 
       -- Harpoon
       use 'ThePrimeagen/harpoon'
+
       use {
-            'nvim-telescope/telescope.nvim', tag = '0.1.1',
+            'nvim-telescope/telescope.nvim', tag = '0.1.x',
             requires = { {'nvim-lua/plenary.nvim'} }
       }
 
@@ -25,6 +26,7 @@ return require('packer').startup(function(use)
 
       -- Syntax highlight
       use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate'})
+      use('nvim-treesitter/nvim-treesitter-context')
 
       use('mbbill/undotree')
       use 'tpope/vim-fugitive'
@@ -78,6 +80,17 @@ return require('packer').startup(function(use)
       use {
             'tzachar/cmp-tabnine',
             run='./install.ps1'
+      }
+
+      use {
+            'Exafunction/codeium.vim',
+            config = function ()
+                  -- Change '<C-g>' here to any keycode you like.
+                  vim.keymap.set('i', '<C-g>', function () return vim.fn['codeium#Accept']() end, { expr = true })
+                  vim.keymap.set('i', '<c-k>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
+                  vim.keymap.set('i', '<c-j>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
+                  vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
+            end
       }
 
       -- Comments

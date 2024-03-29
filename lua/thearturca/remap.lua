@@ -1,4 +1,7 @@
 vim.g.mapleader = " "
+
+-- disable codeium default bindings
+vim.g.codeium_disable_bindings = 1
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.api.nvim_set_keymap("n", "<C-d>", "<C-d>zz", { noremap = true })
 vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zz", { noremap = true })
