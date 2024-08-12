@@ -16,7 +16,7 @@ require('lualine').setup {
             lualine_a = {'mode'},
             lualine_b = {'branch', 'diff'},
             lualine_c = {'filename','diagnostics'},
-            lualine_x = {'encoding', 'fileformat', 'filetype'},
+            lualine_x = {'vim.api.nvim_call_function("codeium#GetStatusString", {})','encoding', 'fileformat', 'filetype'},
             lualine_y = {'progress'},
             lualine_z = {'location'}
       },

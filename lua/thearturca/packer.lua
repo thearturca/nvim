@@ -12,7 +12,7 @@ return require('packer').startup(function(use)
 
       use {
             'nvim-telescope/telescope.nvim', tag = '0.1.x',
-            requires = { {'nvim-lua/plenary.nvim'} }
+            requires = { {'nvim-lua/plenary.nvim'}, {'nvim-tree/nvim-web-devicons'} }
       }
 
       -- leap
@@ -29,12 +29,11 @@ return require('packer').startup(function(use)
       use('nvim-treesitter/nvim-treesitter-context')
 
       use('mbbill/undotree')
-      use 'tpope/vim-fugitive'
 
       -- LSP
       use {
             'VonHeikemen/lsp-zero.nvim',
-            branch = 'v2.x',
+            branch = 'v4.x',
             requires = {
                   -- LSP Support
                   {'neovim/nvim-lspconfig'},
@@ -57,7 +56,7 @@ return require('packer').startup(function(use)
 
       -- DAP
       use 'mfussenegger/nvim-dap'
-      use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+      use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} }
       use "jay-babu/mason-nvim-dap.nvim"
       use { "mxsdev/nvim-dap-vscode-js", requires = {"mfussenegger/nvim-dap"} }
       use {
@@ -72,10 +71,13 @@ return require('packer').startup(function(use)
             requires = { 'nvim-tree/nvim-web-devicons', opt = true }
       }
 
+      -- git
       use {
             'lewis6991/gitsigns.nvim',
             -- tag = 'release' -- To use the latest release (do not use this if you run Neovim nightly or dev builds!)
       }
+      use 'tpope/vim-fugitive'
+
       -- AI Autocompletion
       use {
             'tzachar/cmp-tabnine',
