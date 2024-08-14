@@ -12,7 +12,13 @@ vim.opt.wrap = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOMEDRIVE") .. os.getenv("HOMEPATH") .. "/.vim/undodir"
+
+if os.getenv("HOMEDRIVE") ~= nil then
+      vim.opt.undodir = os.getenv("HOMEDRIVE") .. os.getenv("HOMEPATH") .. "/.vim/undodir"
+else
+      vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+end
+
 vim.opt.undofile = true
 
 vim.opt.hlsearch = true
