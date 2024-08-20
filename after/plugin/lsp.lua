@@ -64,7 +64,6 @@ lsp.extend_lspconfig({
 require('mason').setup({})
 require('mason-lspconfig').setup({
       ensure_installed = {
-            'eslint',
             'rust_analyzer',
       },
       handlers = {
@@ -96,4 +95,18 @@ require('mason-lspconfig').setup({
 
 vim.diagnostic.config({
       virtual_text = true
+})
+
+-- linting
+require('lint').linters_by_ft = {
+      typescript = { 'oxlint' },
+      javascript = { 'oxlint' },
+}
+
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+      callback = function()
+            -- try_lint without arguments runs the linters defined in `linters_by_ft`
+            -- for the current filetype
+            require("lint").try_lint()
+      end,
 })

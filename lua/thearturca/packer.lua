@@ -12,7 +12,7 @@ return require('packer').startup(function(use)
 
       use {
             'nvim-telescope/telescope.nvim', tag = '0.1.x',
-            requires = { {'nvim-lua/plenary.nvim'}, {'nvim-tree/nvim-web-devicons'} }
+            requires = { { 'nvim-lua/plenary.nvim' }, { 'nvim-tree/nvim-web-devicons' } }
       }
 
       -- leap
@@ -25,7 +25,7 @@ return require('packer').startup(function(use)
       use({ 'rose-pine/neovim', as = 'rose-pine' })
 
       -- Syntax highlight
-      use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate'})
+      use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
       use('nvim-treesitter/nvim-treesitter-context')
 
       use('mbbill/undotree')
@@ -36,33 +36,34 @@ return require('packer').startup(function(use)
             branch = 'v4.x',
             requires = {
                   -- LSP Support
-                  {'neovim/nvim-lspconfig'},
-                  {'williamboman/mason.nvim'},
-                  {'williamboman/mason-lspconfig.nvim'},
+                  { 'neovim/nvim-lspconfig' },
+                  { 'mfussenegger/nvim-lint' },
+                  { 'williamboman/mason.nvim' },
+                  { 'williamboman/mason-lspconfig.nvim' },
 
                   -- Autocompletion
-                  {'hrsh7th/nvim-cmp'},
-                  {'hrsh7th/cmp-buffer'},
-                  {'hrsh7th/cmp-path'},
-                  {'saadparwaiz1/cmp_luasnip'},
-                  {'hrsh7th/cmp-nvim-lsp'},
-                  {'hrsh7th/cmp-nvim-lua'},
+                  { 'hrsh7th/nvim-cmp' },
+                  { 'hrsh7th/cmp-buffer' },
+                  { 'hrsh7th/cmp-path' },
+                  { 'saadparwaiz1/cmp_luasnip' },
+                  { 'hrsh7th/cmp-nvim-lsp' },
+                  { 'hrsh7th/cmp-nvim-lua' },
 
                   -- Snippets
-                  {'L3MON4D3/LuaSnip'},
-                  {'rafamadriz/friendly-snippets'},
+                  { 'L3MON4D3/LuaSnip' },
+                  { 'rafamadriz/friendly-snippets' },
             }
       }
 
       -- DAP
       use 'mfussenegger/nvim-dap'
-      use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} }
+      use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } }
       use "jay-babu/mason-nvim-dap.nvim"
-      use { "mxsdev/nvim-dap-vscode-js", requires = {"mfussenegger/nvim-dap"} }
+      use { "mxsdev/nvim-dap-vscode-js", requires = { "mfussenegger/nvim-dap" } }
       use {
             "microsoft/vscode-js-debug",
             opt = true,
-            run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out" 
+            run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
       }
 
       -- bottom line
@@ -81,16 +82,18 @@ return require('packer').startup(function(use)
       -- AI Autocompletion
       use {
             'tzachar/cmp-tabnine',
-            run='./install.ps1'
+            run = './install.ps1'
       }
 
       use {
             'Exafunction/codeium.vim',
-            config = function ()
+            config = function()
                   -- Change '<C-g>' here to any keycode you like.
-                  vim.keymap.set('i', '<C-g>', function () return vim.fn['codeium#Accept']() end, { expr = true })
-                  vim.keymap.set('i', '<c-k>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
-                  vim.keymap.set('i', '<c-j>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
+                  vim.keymap.set('i', '<C-g>', function() return vim.fn['codeium#Accept']() end, { expr = true })
+                  vim.keymap.set('i', '<c-k>', function() return vim.fn['codeium#CycleCompletions'](1) end,
+                        { expr = true })
+                  vim.keymap.set('i', '<c-j>', function() return vim.fn['codeium#CycleCompletions'](-1) end,
+                        { expr = true })
                   vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
             end
       }
@@ -109,4 +112,3 @@ return require('packer').startup(function(use)
             config = function() require("nvim-autopairs").setup {} end
       }
 end)
-
