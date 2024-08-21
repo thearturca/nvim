@@ -97,14 +97,32 @@ vim.diagnostic.config({
       virtual_text = true
 })
 
--- linting
-require('lint').linters_by_ft = {
+local lint = require('lint')
+lint.linters_by_ft = {
       typescript = { 'oxlint' },
       javascript = { 'oxlint' },
 }
 
+local function file_exists(name)
+      local f = io.open(name, "r")
+      return f ~= nil and io.close(f)
+end
+
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
       callback = function()
+            if file_exists("oxlintrc.json") then
+                  lint.linters.oxlint.args = {
+                        '--config',
+                        './oxlintrc.json',
+                        "--format",
+                        "unix",
+                  }
+            else
+                  lint.linters.oxlint.args = {
+                        "--format",
+                        "unix",
+                  }
+            end
             -- try_lint without arguments runs the linters defined in `linters_by_ft`
             -- for the current filetype
             require("lint").try_lint()
