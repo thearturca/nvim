@@ -57,18 +57,6 @@ require("formatter").setup({
 		markdown = {
 			require("formatter.filetypes.markdown").prettier,
 		},
-
-		-- Use the special "*" filetype for defining formatter configurations on
-		-- any filetype
-		["*"] = {
-			-- "formatter.filetypes.any" defines default configurations for any
-			-- filetype
-			function()
-				if vim.fn.executable("sed") == 1 then
-					return require("formatter.filetypes.any").remove_trailing_whitespace
-				end
-			end,
-		},
 	},
 })
 
