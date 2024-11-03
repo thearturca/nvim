@@ -55,6 +55,9 @@ return require('packer').startup(function(use)
             }
       }
 
+      -- Formatter
+      use { 'mhartington/formatter.nvim' }
+
       -- DAP
       use 'mfussenegger/nvim-dap'
       use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } }
