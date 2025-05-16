@@ -1,3 +1,5 @@
+vim.opt.guicursor = ""
+
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
@@ -6,17 +8,16 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
-
-vim.opt.cindent = true
+vim.opt.smartindent = true
 vim.opt.wrap = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false
 
 if os.getenv("HOMEDRIVE") ~= nil then
-    vim.opt.undodir = os.getenv("HOMEDRIVE") .. os.getenv("HOMEPATH") .. "/.vim/undodir"
+	vim.opt.undodir = os.getenv("HOMEDRIVE") .. os.getenv("HOMEPATH") .. "/.vim/undodir"
 else
-    vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+	vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 end
 
 vim.opt.undofile = true
