@@ -1,6 +1,6 @@
 return {
 	"neovim/nvim-lspconfig",
-	version = "v4.x",
+	version = "v2.4",
 	dependencies = {
 		-- LSP Support
 		{ "mfussenegger/nvim-lint" },
@@ -31,9 +31,6 @@ return {
 		{ "j-hui/fidget.nvim" },
 	},
 	config = function()
-		-- lsp.preset("recommended")
-		-- lsp.nvim_workspace()
-
 		local cmp = require("cmp")
 		local cmp_lsp = require("cmp_nvim_lsp")
 		local capabilities = vim.tbl_deep_extend(
@@ -62,10 +59,10 @@ return {
 			},
 			handlers = {
 				function(server_name)
-					require("lspconfig")[server_name].setup({ capabilities = capabilities })
+					vim.lsp.enable(server_name, { capabilities = capabilities })
 				end,
 				lua_ls = function()
-					require("lspconfig").lua_ls.setup({
+					vim.lsp.enable("lua_ls", {
 						capabilities = capabilities,
 						settings = {
 							Lua = {
