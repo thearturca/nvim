@@ -84,6 +84,10 @@ return {
 			},
 		})
 
+		vim.lsp.enable("kulala_ls", {
+			capabilities = capabilities,
+		})
+
 		vim.diagnostic.config({
 			virtual_text = true,
 			float = {
