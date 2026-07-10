@@ -1,16 +1,13 @@
 return {
 	{
-		"nvim-treesitter/nvim-treesitter",
-		branch = "master",
-		build = ":TSUpdate",
-		lazy = false,
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter-textobjects",
-		},
-		init = function()
-			local configs = require("nvim-treesitter.configs")
-			configs.setup({
-				-- A list of parser names, or "all" (the five listed parsers should always be installed)
+		"romus204/tree-sitter-manager.nvim",
+		dependencies = {}, -- tree-sitter CLI must be installed system-wide
+		config = function()
+			require("tree-sitter-manager").setup({
+				sync_install = false,
+
+				auto_install = true,
+
 				ensure_installed = {
 					"javascript",
 					"typescript",
@@ -25,16 +22,7 @@ return {
 					"css",
 					"html",
 				},
-				-- Install parsers synchronously (only applied to `ensure_installed`)
-				sync_install = false,
-
-				-- Automatically install missing parsers when entering buffer
-				-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-				auto_install = true,
-
-				highlight = {
-					enable = true,
-					additional_vim_regex_highlighting = { "markdown" },
+				nohighlight = {
 					disable = function(_, buf)
 						local max_filesize = 800 * 1024 -- 500 KB
 						local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
@@ -50,12 +38,65 @@ return {
 						return false
 					end,
 				},
-				indent = {
-					enable = true,
-				},
 			})
 		end,
 	},
+	-- {
+	-- 	"nvim-treesitter/nvim-treesitter",
+	-- 	branch = "main",
+	-- 	build = ":TSUpdate",
+	-- 	lazy = false,
+	-- 	dependencies = {
+	-- 		-- "nvim-treesitter/nvim-treesitter-textobjects",
+	-- 	},
+	-- 	init = function()
+	-- 		require("nvim-treesitter").setup({
+	-- 			-- Install parsers synchronously (only applied to `ensure_installed`)
+	-- 			sync_install = false,
+	--
+	-- 			-- Automatically install missing parsers when entering buffer
+	-- 			-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+	-- 			auto_install = true,
+	--
+	-- 			indent = {
+	-- 				enable = true,
+	-- 			},
+	--
+	-- 			highlight = {
+	-- 				enable = true,
+	-- 				additional_vim_regex_highlighting = { "markdown" },
+	-- 				disable = function(_, buf)
+	-- 					local max_filesize = 800 * 1024 -- 500 KB
+	-- 					local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+	-- 					if ok and stats and stats.size > max_filesize then
+	-- 						vim.notify(
+	-- 							"File larger than 800KB treesitter disabled for performance",
+	-- 							vim.log.levels.WARN,
+	-- 							{ title = "Treesitter" }
+	-- 						)
+	-- 						return true
+	-- 					end
+	--
+	-- 					return false
+	-- 				end,
+	-- 			},
+	-- 		})
+	-- 		require("nvim-treesitter").install({
+	-- 			"javascript",
+	-- 			"typescript",
+	-- 			"tsx",
+	-- 			"go",
+	-- 			"rust",
+	-- 			"c",
+	-- 			"lua",
+	-- 			"vim",
+	-- 			"vimdoc",
+	-- 			"query",
+	-- 			"css",
+	-- 			"html",
+	-- 		})
+	-- 	end,
+	-- },
 	{
 		"nvim-treesitter/nvim-treesitter-context",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
